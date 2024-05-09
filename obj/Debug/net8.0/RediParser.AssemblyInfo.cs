@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright (c) 2024 Riley Fields")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Parses the REDIS ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76859771f26d227994a17ec98f6d42e481a13847")]
 [assembly: System.Reflection.AssemblyProductAttribute("RediParser REDIS protocol parser")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RediParser")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0")]

@@ -15,3 +15,44 @@ Let's break down the first simple steps of the REDIS protocol:
         - Strings can either be `simple` or `bulk`
         - `simple` strings are used for short messages 
         - `bulk` strings are used for any type of data
+
+    - Messages start with type-determining byte
+    - Data is represented
+    - CRLF separates message parts (similar to `;` to denote new statements in something like C#)
+
+
+# What structure to use?
+
+Starting with the simplest aspect: RESP data type parsing
+
+RESP data types start with a unique byte identifier denoting what type of data is being sent. Let's use an enum for handy clasification, this enum can then be used in a more human-readable format for writing the parser.
+
+How should message types be handled?
+
+Recognizing message types is easy enough with a simple check of the first byte of the string, but how should that data be interpreted?
+
+- Since this could scale pretty large, high-perf code would be preferred
+    - Base class that defines a packet type, with derived classes marked with attributes?
+        - Convenient to work with
+        - Dictionary of packet types can be built by discovering derived classes with attributes
+        - Efficient constructors can be built with LinQ expressions on startup
+        - Keeps code clean by not making a monolith class to handle all types
+
+- Can we do better?
+    - Structs with interface implementations?
+        - Potentially lighter than classes (need to be passed by ref though if going into hot code!)
+        - Forces type specialization in the JIT
+        - Constructors can still be built with LinQ expressions on startup
+        - Still avoids monoliths
+    - Somewhat unconventional, but likely still easy to use
+
+- How should this data be stored?
+    - Each object implements "Deserialize" and "Serialize" functions from a shared interface
+    - Each object carries with it field(s) that represent the data that has been deserialized, or data that is ready for serialization
+    - This makes it really easy to loop through big collections of these suckers and bang 'em in or out of the parser
+
+- How should these data types be created?
+    - Static helper class that defines functions for reading the REDIS data
+    - Holds immutable dictionary of constructors for REDIS data structures
+
+Let's build it up to this point and see what needs to be refined.

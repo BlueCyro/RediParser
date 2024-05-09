@@ -1,0 +1,17 @@
+RediParser notes
+
+
+# Where to start?
+
+Let's break down the first simple steps of the REDIS protocol:
+
+* Simple send/receive, clients send in data, server sends response
+
+* Data is formatted as such
+    - Encoded in binary
+    - First byte determines type in RESP payload (`+` for string, `-` for error, `$` for bulk string, etc.)
+    - Types are classified as `simple` or `bulk` (aggregate)
+        - `simple` classifies simple values like float, int, bool, etc.
+        - Strings can either be `simple` or `bulk`
+        - `simple` strings are used for short messages 
+        - `bulk` strings are used for any type of data

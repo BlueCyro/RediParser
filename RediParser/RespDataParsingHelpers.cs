@@ -34,6 +34,7 @@ public static class RespDataParsingHelpers
     public const byte LF = 0x0A;
 
 
+
     /// <summary>
     /// Represents a CRLF line-ending
     /// </summary>

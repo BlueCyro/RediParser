@@ -1,3 +1,4 @@
+using System.Numerics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -22,6 +23,18 @@ public class SerializationTests
     {
         SimpleError toSerialize = new("URDUMB", "You are dumb!");
         string expectedOutput = "-URDUMB You are dumb!\r\n";
+
+        Assert.AreEqual(expectedOutput, toSerialize.ToString());
+    }
+
+
+
+    [TestMethod]
+    public void BigNumberSerializeTest()
+    {
+        BigInteger big = new(38324802394892348);
+        SimpleBigNumber toSerialize = new(big);
+        string expectedOutput = "(38324802394892348\r\n";
 
         Assert.AreEqual(expectedOutput, toSerialize.ToString());
     }

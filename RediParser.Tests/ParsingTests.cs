@@ -9,7 +9,7 @@ namespace RediParser.Tests;
 public class ParsingTests
 {
     [TestMethod]
-    public void StringParseTest()
+    public void BoxedStringParseTest()
     {
         string toParse = "+OK\r\n";
         string expectedOutput = "OK";

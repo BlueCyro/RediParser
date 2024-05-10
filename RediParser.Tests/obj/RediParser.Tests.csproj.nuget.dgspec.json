@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.csproj": {}
+    "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.Tests\\RediParser.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.csproj": {
+    "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.Tests\\RediParser.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.csproj",
-        "projectName": "RediParser",
-        "projectPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.csproj",
+        "projectUniqueName": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.Tests\\RediParser.Tests.csproj",
+        "projectName": "RediParser.Tests",
+        "projectPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.Tests\\RediParser.Tests.csproj",
         "packagesPath": "C:\\Users\\Cyro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\obj\\",
+        "outputPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Cyro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,6 +44,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "MSTest": {
+              "target": "Package",
+              "version": "[3.3.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

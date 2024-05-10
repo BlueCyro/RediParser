@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.csproj",
+      "projectUniqueName": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser\\RediParser.csproj",
       "projectName": "RediParser",
-      "projectPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser.csproj",
+      "projectPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser\\RediParser.csproj",
       "packagesPath": "C:\\Users\\Cyro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\obj\\",
+      "outputPath": "C:\\Users\\Cyro\\Documents\\Coding Stuff\\RediParser\\RediParser\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Cyro\\AppData\\Roaming\\NuGet\\NuGet.Config",

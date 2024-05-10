@@ -41,18 +41,30 @@ Recognizing message types is easy enough with a simple check of the first byte o
 - Can we do better?
     - Structs with interface implementations?
         - Potentially lighter than classes (need to be passed by ref though if going into hot code!)
-        - Forces type specialization in the JIT
+        - Forces type specialization in the JIT with compile-time type info
         - Constructors can still be built with LinQ expressions on startup
         - Still avoids monoliths
     - Somewhat unconventional, but likely still easy to use
+
+- What else
+    - Functional programming?
+        - Succinct, would only require a static class full of methods
+        - Dictionary can still be built with method calls mapping to data types
+        - Might get a little monolithic unless it's a partial class, which is okay
+        - -- Can't compartmentalize easily
+    - Probably not, maybe if we were going for pure speed, but that gets esoteric quick
 
 - How should this data be stored?
     - Each object implements "Deserialize" and "Serialize" functions from a shared interface
     - Each object carries with it field(s) that represent the data that has been deserialized, or data that is ready for serialization
     - This makes it really easy to loop through big collections of these suckers and bang 'em in or out of the parser
+    - Each object has a custom "[RespData]" attribute that takes a "RespDataType" enum to denote what data type that structure should parse
 
 - How should these data types be created?
     - Static helper class that defines functions for reading the REDIS data
     - Holds immutable dictionary of constructors for REDIS data structures
+
+
+- How do we actually use these things?
 
 Let's build it up to this point and see what needs to be refined.

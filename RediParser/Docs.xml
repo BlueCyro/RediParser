@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RediParser</name>
+    </assembly>
+    <members>
+        <member name="T:RediParser.IRespData">
+            <summary>
+            Represents the contract for interacting with redis data types
+            </summary>
+        </member>
+        <member name="P:RediParser.IRespData.BoxedData">
+            <summary>
+            The boxed object representation of the data in this structure
+            </summary>
+        </member>
+        <member name="P:RediParser.IRespData.DataType">
+            <summary>
+            The type of data held by this structure
+            </summary>
+        </member>
+        <member name="P:RediParser.IRespData.RespDataStructureType">
+            <summary>
+            The type of the object used to store the RESP data
+            </summary>
+        </member>
+        <member name="M:RediParser.IRespData.Serialize">
+            <summary>
+            Serializes the data type into the REDIS format
+            </summary>
+            <returns>A string representing the formatted data type</returns>
+        </member>
+        <member name="T:RediParser.RespDataAttribute">
+            <summary>
+            Marks a structure for handling a particular RESP type
+            </summary>
+            <param name="dataType">The RESP data type this structure should handle</param>
+        </member>
+        <member name="M:RediParser.RespDataAttribute.#ctor(RediParser.RespDataType)">
+            <summary>
+            Marks a structure for handling a particular RESP type
+            </summary>
+            <param name="dataType">The RESP data type this structure should handle</param>
+        </member>
+        <member name="F:RediParser.RespDataAttribute.DataType">
+            <summary>
+            The RESP data type to be handled
+            </summary>
+        </member>
+        <member name="T:RediParser.RespDataConstructor">
+            <summary>
+            Delegate signature to construct an RESP data structure
+            </summary>
+            <param name="data">Data to serialize</param>
+            <returns>Deserialized RESP data structure</returns>
+        </member>
+        <member name="T:RediParser.RespDataParsingHelpers">
+            <summary>
+            Provides methods for handling RESP data
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataParsingHelpers.CR">
+            <summary>
+            Represents a carriage return
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataParsingHelpers.LF">
+            <summary>
+            Represents a line feed
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataParsingHelpers.CRLF">
+            <summary>
+            Represents a CRLF line-ending
+            </summary>
+        </member>
+        <member name="M:RediParser.RespDataParsingHelpers.ParseRespInput(System.String)">
+            <summary>
+            Parses a a single RESP input
+            </summary>
+            <param name="input">Serialized RESP data</param>
+            <returns>The corresponding deserialized RESP data structure</returns>
+            <exception cref="T:System.NotImplementedException">Thrown if a particular data type is not supported by the parser</exception>
+        </member>
+        <member name="M:RediParser.RespDataParsingHelpers.AsByteSpan(System.String)">
+            <summary>
+            Interprets a string as a ReadOnly byte span
+            </summary>
+            <param name="input">String to interpret</param>
+            <returns>Read-only byte span</returns>
+        </member>
+        <member name="M:RediParser.RespDataParsingHelpers.AsCharSpan(System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Interprets a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:byte"/> as <see cref="T:char"/>
+            </summary>
+            <param name="input">Byte span to reinterpret</param>
+            <returns>Read-only char span</returns>
+        </member>
+        <member name="M:RediParser.RespDataParsingHelpers.TrimRespInfo(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Trims the RESP type and the ending CRLF markers from the input
+            </summary>
+            <param name="input">RESP byte span</param>
+            <returns>Trimmed data</returns>
+        </member>
+        <member name="T:RediParser.RespDataType">
+            <summary>
+            Represents a byte denoting a data type for an RESP message
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.SimpleString">
+            <summary>
+            Simple string type denoted by '+'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.SimpleError">
+            <summary>
+            Simple error type denoted by '-'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Integer">
+            <summary>
+            Integer type denoted by ':'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.BulkString">
+            <summary>
+            Bunk string type denoted by '$'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Array">
+            <summary>
+            Array type denoted by '*'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Null">
+            <summary>
+            Null type denoted by '_'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Boolean">
+            <summary>
+            Boolean type denoted by '#'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Double">
+            <summary>
+            Double type denoted by ','
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.BigNumber">
+            <summary>
+            Big number type denoted by '('
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.BulkError">
+            <summary>
+            Bunk error type denoted by '!'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.VerbatimString">
+            <summary>
+            Verbatim string type denoted by '='
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Map">
+            <summary>
+            Map type denoted by '%'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Set">
+            <summary>
+            Set type denoted by '~'
+            </summary>
+        </member>
+        <member name="F:RediParser.RespDataType.Push">
+            <summary>
+            Push type denoted by '>'
+            </summary>
+        </member>
+        <member name="T:RediParser.SimpleString">
+            <summary>
+            Represents the 'simple string' RESP data type
+            </summary>
+        </member>
+        <member name="M:RediParser.SimpleString.#ctor(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Constructs a simple string using RESP data as input
+            </summary>
+            <param name="data">The data to deserialize</param>
+        </member>
+        <member name="M:RediParser.SimpleString.#ctor(System.String)">
+            <summary>
+            Constructs a simple string using a provided string as input
+            </summary>
+            <param name="data">The data to store</param>
+        </member>
+        <member name="F:RediParser.SimpleString.String">
+            <summary>
+            The string that this struct contains
+            </summary>
+        </member>
+        <member name="P:RediParser.SimpleString.BoxedData">
+            <inheritdoc cref="P:RediParser.IRespData.BoxedData"/>
+        </member>
+        <member name="P:RediParser.SimpleString.DataType">
+            <inheritdoc cref="P:RediParser.IRespData.DataType"/>
+        </member>
+        <member name="P:RediParser.SimpleString.RespDataStructureType">
+            <inheritdoc cref="P:RediParser.IRespData.RespDataStructureType"/>
+        </member>
+        <member name="M:RediParser.SimpleString.Serialize">
+            <inheritdoc cref="M:RediParser.IRespData.Serialize"/>
+        </member>
+    </members>
+</doc>

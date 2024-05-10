@@ -9,6 +9,11 @@
             Represents the contract for interacting with redis data types
             </summary>
         </member>
+        <member name="P:RediParser.IRespData.IsError">
+            <summary>
+            Returns true if this structure is an error
+            </summary>
+        </member>
         <member name="P:RediParser.IRespData.BoxedData">
             <summary>
             The boxed object representation of the data in this structure
@@ -24,11 +29,91 @@
             The type of the object used to store the RESP data
             </summary>
         </member>
-        <member name="M:RediParser.IRespData.Serialize">
+        <member name="T:RediParser.SimpleError">
             <summary>
-            Serializes the data type into the REDIS format
+            Represents the 'simple string' RESP data type
             </summary>
-            <returns>A string representing the formatted data type</returns>
+        </member>
+        <member name="M:RediParser.SimpleError.#ctor(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Constructs a <see cref="T:RediParser.SimpleError"/> using RESP data as input
+            </summary>
+            <param name="data">The data to deserialize</param>
+        </member>
+        <member name="M:RediParser.SimpleError.#ctor(System.String,System.String)">
+            <summary>
+            Constructs a <see cref="T:RediParser.SimpleError"/> using a provided error type string and message
+            </summary>
+            <param name="error">The error type</param>
+            <param name="message">The error message</param>
+        </member>
+        <member name="P:RediParser.SimpleError.IsError">
+            <inheritdoc cref="P:RediParser.IRespData.IsError"/>
+        </member>
+        <member name="F:RediParser.SimpleError.Error">
+            <summary>
+            The name of the error
+            </summary>
+        </member>
+        <member name="F:RediParser.SimpleError.Message">
+            <summary>
+            The message the error contains
+            </summary>
+        </member>
+        <member name="P:RediParser.SimpleError.BoxedData">
+            <inheritdoc cref="P:RediParser.IRespData.BoxedData"/>
+        </member>
+        <member name="P:RediParser.SimpleError.DataType">
+            <inheritdoc cref="P:RediParser.IRespData.DataType"/>
+        </member>
+        <member name="P:RediParser.SimpleError.RespDataStructureType">
+            <inheritdoc cref="P:RediParser.IRespData.RespDataStructureType"/>
+        </member>
+        <member name="M:RediParser.SimpleError.ToString">
+            <summary>
+            Serializes the data into RESP
+            </summary>
+            <returns>RESP string</returns>
+        </member>
+        <member name="T:RediParser.SimpleString">
+            <summary>
+            Represents the 'simple string' RESP data type
+            </summary>
+        </member>
+        <member name="M:RediParser.SimpleString.#ctor(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Constructs a <see cref="T:RediParser.SimpleString"/> using RESP data as input
+            </summary>
+            <param name="data">The data to deserialize</param>
+        </member>
+        <member name="M:RediParser.SimpleString.#ctor(System.String)">
+            <summary>
+            Constructs a <see cref="T:RediParser.SimpleString"/> using a provided string as input
+            </summary>
+            <param name="data">The data to store</param>
+        </member>
+        <member name="P:RediParser.SimpleString.IsError">
+            <inheritdoc cref="P:RediParser.IRespData.IsError"/>
+        </member>
+        <member name="F:RediParser.SimpleString.String">
+            <summary>
+            The string that this struct contains
+            </summary>
+        </member>
+        <member name="P:RediParser.SimpleString.BoxedData">
+            <inheritdoc cref="P:RediParser.IRespData.BoxedData"/>
+        </member>
+        <member name="P:RediParser.SimpleString.DataType">
+            <inheritdoc cref="P:RediParser.IRespData.DataType"/>
+        </member>
+        <member name="P:RediParser.SimpleString.RespDataStructureType">
+            <inheritdoc cref="P:RediParser.IRespData.RespDataStructureType"/>
+        </member>
+        <member name="M:RediParser.SimpleString.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:RediParser.RespDataAttribute">
             <summary>
@@ -177,40 +262,6 @@
             <summary>
             Push type denoted by '>'
             </summary>
-        </member>
-        <member name="T:RediParser.SimpleString">
-            <summary>
-            Represents the 'simple string' RESP data type
-            </summary>
-        </member>
-        <member name="M:RediParser.SimpleString.#ctor(System.ReadOnlySpan{System.Char})">
-            <summary>
-            Constructs a simple string using RESP data as input
-            </summary>
-            <param name="data">The data to deserialize</param>
-        </member>
-        <member name="M:RediParser.SimpleString.#ctor(System.String)">
-            <summary>
-            Constructs a simple string using a provided string as input
-            </summary>
-            <param name="data">The data to store</param>
-        </member>
-        <member name="F:RediParser.SimpleString.String">
-            <summary>
-            The string that this struct contains
-            </summary>
-        </member>
-        <member name="P:RediParser.SimpleString.BoxedData">
-            <inheritdoc cref="P:RediParser.IRespData.BoxedData"/>
-        </member>
-        <member name="P:RediParser.SimpleString.DataType">
-            <inheritdoc cref="P:RediParser.IRespData.DataType"/>
-        </member>
-        <member name="P:RediParser.SimpleString.RespDataStructureType">
-            <inheritdoc cref="P:RediParser.IRespData.RespDataStructureType"/>
-        </member>
-        <member name="M:RediParser.SimpleString.Serialize">
-            <inheritdoc cref="M:RediParser.IRespData.Serialize"/>
         </member>
     </members>
 </doc>

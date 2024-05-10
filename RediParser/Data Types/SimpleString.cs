@@ -4,15 +4,16 @@ using System.Runtime.InteropServices;
 namespace RediParser;
 
 using static RespDataParsingHelpers;
+
+
 /// <summary>
 /// Represents the 'simple string' RESP data type
 /// </summary>
-
 [RespData(RespDataType.SimpleString)]
 public readonly struct SimpleString : IRespData
 {
     /// <summary>
-    /// Constructs a simple string using RESP data as input
+    /// Constructs a <see cref="SimpleString"/> using RESP data as input
     /// </summary>
     /// <param name="data">The data to deserialize</param>
     public SimpleString(ReadOnlySpan<char> data)
@@ -23,7 +24,7 @@ public readonly struct SimpleString : IRespData
 
 
     /// <summary>
-    /// Constructs a simple string using a provided string as input
+    /// Constructs a <see cref="SimpleString"/> using a provided string as input
     /// </summary>
     /// <param name="data">The data to store</param>
     public SimpleString(string data)
@@ -31,6 +32,10 @@ public readonly struct SimpleString : IRespData
         String = data;
     }
 
+
+
+    /// <inheritdoc cref="IRespData.IsError"/>
+    public readonly bool IsError => false;
 
 
     /// <summary>
@@ -55,9 +60,12 @@ public readonly struct SimpleString : IRespData
 
 
 
-    /// <inheritdoc cref="IRespData.Serialize"/>
-    public readonly ReadOnlySpan<byte> Serialize()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public override string ToString()
     {
-        return ((char)RespDataType.SimpleString + String + CRLF).AsByteSpan();
+        return (char)RespDataType.SimpleString + String + CRLF;
     }
 }

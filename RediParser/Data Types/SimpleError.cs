@@ -7,7 +7,7 @@ using static RespDataParsingHelpers;
 
 
 /// <summary>
-/// Represents the 'simple string' RESP data type
+/// Represents the 'simple error' RESP data type
 /// </summary>
 [RespData(RespDataType.SimpleError)]
 public readonly struct SimpleError : IRespData

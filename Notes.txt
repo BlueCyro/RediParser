@@ -65,6 +65,5 @@ Recognizing message types is easy enough with a simple check of the first byte o
     - Holds immutable dictionary of constructors for REDIS data structures
 
 
-- How do we actually use these things?
 
 Let's build it up to this point and see what needs to be refined.

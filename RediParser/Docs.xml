@@ -29,9 +29,49 @@
             The type of the object used to store the RESP data
             </summary>
         </member>
+        <member name="T:RediParser.SimpleBigNumber">
+            <summary>
+            Represents the 'big number' RESP data type
+            </summary>
+        </member>
+        <member name="M:RediParser.SimpleBigNumber.#ctor(System.ReadOnlySpan{System.Char})">
+            <summary>
+            Constructs a <see cref="T:RediParser.SimpleBigNumber"/> using RESP data as input
+            </summary>
+            <param name="data">The data to deserialize</param>
+        </member>
+        <member name="M:RediParser.SimpleBigNumber.#ctor(System.Numerics.BigInteger)">
+            <summary>
+            Constructs a <see cref="T:RediParser.SimpleBigNumber"/> using a provided <see cref="T:System.Numerics.BigInteger"/>
+            </summary>
+            <param name="number">The error type</param>
+        </member>
+        <member name="F:RediParser.SimpleBigNumber.Number">
+            <summary>
+            The held big number
+            </summary>
+        </member>
+        <member name="P:RediParser.SimpleBigNumber.IsError">
+            <inheritdoc cref="P:RediParser.IRespData.IsError"/>
+        </member>
+        <member name="P:RediParser.SimpleBigNumber.BoxedData">
+            <inheritdoc cref="P:RediParser.IRespData.BoxedData"/>
+        </member>
+        <member name="P:RediParser.SimpleBigNumber.DataType">
+            <inheritdoc cref="P:RediParser.IRespData.DataType"/>
+        </member>
+        <member name="P:RediParser.SimpleBigNumber.RespDataStructureType">
+            <inheritdoc cref="P:RediParser.IRespData.RespDataStructureType"/>
+        </member>
+        <member name="M:RediParser.SimpleBigNumber.ToString">
+            <summary>
+            Serializes the data into RESP
+            </summary>
+            <returns>RESP string</returns>
+        </member>
         <member name="T:RediParser.SimpleError">
             <summary>
-            Represents the 'simple string' RESP data type
+            Represents the 'simple error' RESP data type
             </summary>
         </member>
         <member name="M:RediParser.SimpleError.#ctor(System.ReadOnlySpan{System.Char})">
@@ -166,6 +206,7 @@
             <param name="input">Serialized RESP data</param>
             <returns>The corresponding deserialized RESP data structure</returns>
             <exception cref="T:System.NotImplementedException">Thrown if a particular data type is not supported by the parser</exception>
+            <exception cref="T:System.IO.InvalidDataException">Thrown if the RESP input is malformed in some way</exception>
         </member>
         <member name="M:RediParser.RespDataParsingHelpers.AsByteSpan(System.String)">
             <summary>
@@ -187,6 +228,13 @@
             </summary>
             <param name="input">RESP byte span</param>
             <returns>Trimmed data</returns>
+        </member>
+        <member name="M:RediParser.RespDataParsingHelpers.ValidateRESP(System.String)">
+            <summary>
+            Validates RESP input
+            </summary>
+            <param name="data">The data to be validated</param>
+            <returns>Whether the input string is valid RESP data</returns>
         </member>
         <member name="T:RediParser.RespDataType">
             <summary>

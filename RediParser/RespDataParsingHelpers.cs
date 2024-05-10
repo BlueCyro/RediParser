@@ -91,8 +91,13 @@ public static class RespDataParsingHelpers
     /// <param name="input">Serialized RESP data</param>
     /// <returns>The corresponding deserialized RESP data structure</returns>
     /// <exception cref="NotImplementedException">Thrown if a particular data type is not supported by the parser</exception>
+    /// <exception cref="InvalidDataException">Thrown if the RESP input is malformed in some way</exception>
     public static IRespData ParseRespInput(string input)
     {
+        if (!ValidateRESP(input))
+            throw new InvalidDataException($"RESP input is malformed! Input was: {input}");
+        
+
         ReadOnlySpan<char> inputData = input.AsSpan();
         RespDataType dataType = (RespDataType)inputData[0];
 
@@ -139,5 +144,17 @@ public static class RespDataParsingHelpers
     public static ReadOnlySpan<char> TrimRespInfo(this ReadOnlySpan<char> input)
     {
         return input[1..].TrimEnd(CRLF);
+    }
+
+
+
+    /// <summary>
+    /// Validates RESP input
+    /// </summary>
+    /// <param name="data">The data to be validated</param>
+    /// <returns>Whether the input string is valid RESP data</returns>
+    public static bool ValidateRESP(string data) // TODO: More robust validity checks
+    {
+        return RespDataType.IsDefined((RespDataType)data[0]) && data.EndsWith(CRLF);
     }
 }
